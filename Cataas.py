@@ -15,8 +15,6 @@ def get_image():
         return None
 
 
-
-
 root = Tk()
 root.title("Cats Images")
 root.geometry("600x480")
