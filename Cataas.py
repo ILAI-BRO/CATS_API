@@ -8,7 +8,7 @@ def get_image(url):
         response = requests.get(url)
         response.raise_for_status()
         img_data = BytesIO(response.content)
-        img = Image.open(img_data)
+        img = Image.open(img_data).resize((600, 480))
         return ImageTk.PhotoImage(img)
     except Exception as error:
         print(f"Произошла ошибка: {error}")
@@ -23,7 +23,7 @@ def change_img():
 
 root = Tk()
 root.title("Cats Images")
-root.geometry("600x480")
+root.geometry("600x530")
 
 label =Label()
 label.pack()
