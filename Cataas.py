@@ -22,7 +22,10 @@ def get_image(url):
 
 # Изменяем изображение на новое
 def open_new_window():
-    img = get_image(url)
+    tag = tag_entry.get()
+
+    url_tag = f"{url}/{tag}" if tag else url
+    img = get_image(url_tag)
 
     if img:
         new_window = Toplevel()
@@ -39,12 +42,12 @@ root = Tk()
 root.title("Cats Images")
 root.geometry("600x530")
 
+tag_entry = Entry()
+tag_entry.pack()
 
+load_button = Button(text="Загрузить картинку по тегу", command=open_new_window)
+load_button.pack()
 
-
-
-# btn_change = Button(text="Обнови котика", command=change_img)
-# btn_change.pack()
 
 
 menu_bar = Menu(root)
@@ -56,6 +59,6 @@ file_menu.add_command(label="загрузить фото", command=open_new_wind
 file_menu.add_separator()
 file_menu.add_command(label="Выход", command=root.quit)
 
-open_new_window()
+
 
 root.mainloop()
