@@ -1,9 +1,15 @@
 from tkinter import *
+from tkinter.ttk import *
 from PIL import ImageTk, Image
 import requests
 from io import BytesIO
 
+
+Allowed_tags = ["sleep", "jump", "eat", "black", "fight", "bengal", "siamese", "cute"]
 url = "https://cataas.com/cat"
+
+
+
 
 
 # Получаем изображение
@@ -22,7 +28,7 @@ def get_image(url):
 
 # Изменяем изображение на новое
 def open_new_window():
-    tag = tag_entry.get()
+    tag = tag_combo.get()
 
     url_tag = f"{url}/{tag}" if tag else url
     img = get_image(url_tag)
@@ -35,6 +41,16 @@ def open_new_window():
         label.pack()
         label.image = img
 
+def open_random_img():
+    img = get_image(url)
+
+    if img:
+        new_window = Toplevel()
+        new_window.title("Картинка с котиком")
+        new_window.geometry("600x480")
+        label = Label(new_window, image=img)
+        label.pack()
+        label.image = img
 
 
 
@@ -42,12 +58,17 @@ root = Tk()
 root.title("Cats Images")
 root.geometry("600x530")
 
-tag_entry = Entry()
-tag_entry.pack()
+tag_label = Label(text="Выбери тег")
+tag_label.pack()
+
+tag_combo=Combobox(values=Allowed_tags)
+tag_combo.pack()
 
 load_button = Button(text="Загрузить картинку по тегу", command=open_new_window)
 load_button.pack()
 
+load_random_button = Button(text="Загрузить случайное изображение", command=open_random_img)
+load_random_button.pack()
 
 
 menu_bar = Menu(root)
