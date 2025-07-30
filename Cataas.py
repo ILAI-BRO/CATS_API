@@ -21,11 +21,15 @@ def get_image(url):
 
 
 # Изменяем изображение на новое
-def change_img():
+def open_new_window():
     img = get_image(url)
 
     if img:
-        label.config(image=img)
+        new_window = Toplevel()
+        new_window.title("Картинка с котиком")
+        new_window.geometry("600x480")
+        label = Label(new_window, image=img)
+        label.pack()
         label.image = img
 
 
@@ -37,8 +41,7 @@ root.geometry("600x530")
 
 
 
-label =Label()
-label.pack()
+
 
 # btn_change = Button(text="Обнови котика", command=change_img)
 # btn_change.pack()
@@ -49,10 +52,10 @@ root.config(menu=menu_bar)
 
 file_menu = Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Файл", menu=file_menu)
-file_menu.add_command(label="загрузить фото", command=change_img)
+file_menu.add_command(label="загрузить фото", command=open_new_window)
 file_menu.add_separator()
 file_menu.add_command(label="Выход", command=root.quit)
 
-change_img()
+open_new_window()
 
 root.mainloop()
