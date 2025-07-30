@@ -28,6 +28,9 @@ def change_img():
         label.config(image=img)
         label.image = img
 
+
+
+
 root = Tk()
 root.title("Cats Images")
 root.geometry("600x530")
